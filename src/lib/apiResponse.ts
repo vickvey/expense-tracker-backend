@@ -1,4 +1,3 @@
-// utils/apiResponse.ts
 import { Response } from 'express';
 
 export class ApiResponse {
@@ -11,11 +10,11 @@ export class ApiResponse {
   ) {
     if (success) {
       console.log(
-        `[RES] - ${success ? 'success' : 'error'} - ${res.statusCode} - ${message}`,
+        `[RESPONSE]: ${success ? 'success' : 'error'} - ${res.statusCode} - ${message}`,
       );
     } else {
       console.error(
-        `[RES] - ${success ? 'success' : 'error'} - ${res.statusCode} - ${message}`,
+        `[RESPONSE]: ${success ? 'success' : 'error'} - ${res.statusCode} - ${message}`,
       );
     }
     res.status(statusCode).json({
