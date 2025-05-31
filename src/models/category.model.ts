@@ -13,9 +13,9 @@ const categorySchema = new mongoose.Schema(
       trim: true,
       maxLength: 255,
     },
-    type: {
+    color: {
       type: String,
-      enum: ['expense'],
+      enum: ['violet', 'indigo', 'blue', 'green', 'yellow', 'orange', 'red'],
     },
     user: {
       type: mongoose.Schema.Types.ObjectId,

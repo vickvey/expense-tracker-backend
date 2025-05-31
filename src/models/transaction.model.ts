@@ -34,6 +34,11 @@ const transactionSchema = new mongoose.Schema(
       ref: 'User',
       required: [true, 'Transaction should be related to a User'],
     },
+    category: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Category',
+      required: [true, 'Transaction Category is required'],
+    },
   },
   {
     timestamps: true,
