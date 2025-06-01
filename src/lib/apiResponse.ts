@@ -1,22 +1,13 @@
 import { Response } from 'express';
 
 export class ApiResponse {
-  static send<T>(
+  private static send<T>(
     res: Response,
     statusCode: number,
     success: boolean,
     message: string,
     data?: T,
   ) {
-    if (success) {
-      console.log(
-        `[RESPONSE]: ${success ? 'success' : 'error'} - ${res.statusCode} - ${message}`,
-      );
-    } else {
-      console.error(
-        `[RESPONSE]: ${success ? 'success' : 'error'} - ${res.statusCode} - ${message}`,
-      );
-    }
     res.status(statusCode).json({
       success,
       message,
@@ -31,7 +22,8 @@ export class ApiResponse {
     message: string,
     data?: T,
   ) {
-    this.send(res, 200, true, message, data);
+    console.log(`[RESPONSE]: Success - ${statusCode} - ${message}`);
+    this.send(res, statusCode, true, message, data);
   }
 
   // Optional shortcut for error
@@ -41,6 +33,7 @@ export class ApiResponse {
     statusCode = 400,
     errorData?: any,
   ) {
+    console.error(`[RESPONSE]: Error - ${statusCode} - ${message}`);
     this.send(res, statusCode, false, message, errorData);
   }
 }
