@@ -3,6 +3,7 @@ import { ApiResponse } from './lib/apiResponse';
 import loggerMiddleware from './middleware/logger.middleware';
 import errorMiddleware from './middleware/error.middleware';
 import authRouter from './routes/auth.routes';
+import { setupSwagger } from './swagger';
 // import userRouter from './routes/user.routes';
 // import categoryRouter from './routes/category.routes';
 // import transactionRouter from './routes/transaction.routes';
@@ -20,6 +21,9 @@ app.use('/api/v1/auth', authRouter);
 // app.use('/api/v1/user', userRouter);
 // app.use('/api/v1/category', categoryRouter);
 // app.use('/api/v1/transaction', transactionRouter);
+
+// Swagger setup for OpenAPI documentation
+setupSwagger(app);
 
 app.all('/*splat', (req: Request, res: Response) => {
   return ApiResponse.error(res, 'Not Found', 404);
