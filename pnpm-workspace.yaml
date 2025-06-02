@@ -1,3 +1,4 @@
-ignoredBuiltDependencies:
+onlyBuiltDependencies:
+  - '@scarf/scarf'
   - argon2
   - esbuild
