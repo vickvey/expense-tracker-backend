@@ -1,7 +1,7 @@
 {
   "name": "expense-tracker-backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "An expense tracker rest api",
   "main": "dist/index.js",
   "type": "module",
   "scripts": {

@@ -7,6 +7,16 @@ config({
 
 const { PORT, NODE_ENV, DB_URI, JWT_SECRET, JWT_EXPIRES_IN } = process.env;
 
-if (!PORT || !NODE_ENV || !DB_URI || !JWT_SECRET || !JWT_EXPIRES_IN) throw new CustomError('Environment variables not set', 400)
+// Validate environment variables
+if (!PORT || !NODE_ENV || !DB_URI || !JWT_SECRET || !JWT_EXPIRES_IN) {
+  throw new CustomError('Environment variables not set', 400);
+}
 
-export {PORT, NODE_ENV, DB_URI, JWT_SECRET, JWT_EXPIRES_IN};
+// Assert types as string
+export const env = {
+  PORT: PORT as string,
+  NODE_ENV: NODE_ENV as 'development' | 'production' | 'testing',
+  DB_URI: DB_URI as string,
+  JWT_SECRET: JWT_SECRET as string,
+  JWT_EXPIRES_IN: JWT_EXPIRES_IN as string,
+};
