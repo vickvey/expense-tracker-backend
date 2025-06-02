@@ -14,9 +14,9 @@ if (!PORT || !NODE_ENV || !DB_URI || !JWT_SECRET || !JWT_EXPIRES_IN) {
 
 // Assert types as string
 export const env = {
-  PORT: PORT as string,
+  PORT: PORT as string | number,
   NODE_ENV: NODE_ENV as 'development' | 'production' | 'testing',
   DB_URI: DB_URI as string,
   JWT_SECRET: JWT_SECRET as string,
-  JWT_EXPIRES_IN: JWT_EXPIRES_IN as string,
+  JWT_EXPIRES_IN: JWT_EXPIRES_IN as string | number,
 };

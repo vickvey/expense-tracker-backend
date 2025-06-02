@@ -8,3 +8,15 @@ export interface JwtPayload {
 export interface AuthRequest extends Request {
   user?: { id: string };
 }
+
+// Define input types for type safety
+export interface RegisterInput {
+  name: string;
+  email: string;
+  password: string;
+}
+
+export interface LoginInput {
+  email: string;
+  password: string;
+}

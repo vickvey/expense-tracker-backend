@@ -1,14 +1,9 @@
-import { Request, Response, NextFunction } from 'express';
+import { Request, Response } from 'express';
 import { ApiResponse } from '../lib/apiResponse';
 import { CustomError } from '../lib/customError';
-import { NODE_ENV } from '../config/env';
+import { env } from '../config/env';
 
-const errorMiddleware = (
-  err: any,
-  req: Request,
-  res: Response,
-  next: NextFunction,
-) => {
+const errorMiddleware = (err: any, req: Request, res: Response) => {
   console.error(`
   [ERROR]: ${err.statusCode || 500} - ${err.message} - ${req.method} - ${req.originalUrl}`);
 
@@ -32,7 +27,7 @@ const errorMiddleware = (
   const message = err.message || 'Internal Server Error';
 
   // Include stack trace in errorData for development mode
-  const isDev = NODE_ENV === 'development';
+  const isDev = env.NODE_ENV === 'development';
   const errorData = isDev ? { stack: err.stack } : undefined;
 
   return ApiResponse.error(res, message, statusCode, errorData);
