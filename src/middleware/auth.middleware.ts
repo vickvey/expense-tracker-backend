@@ -1,4 +1,4 @@
-import jwt, { JsonWebTokenError, TokenExpiredError } from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 import { Response, NextFunction } from 'express';
 import { User } from '../models/user.model';
 import { ApiResponse } from '../lib/apiResponse';
@@ -40,10 +40,10 @@ const authorize = async (
     req.user = { id: user.id };
     next();
   } catch (error) {
-    if (error instanceof TokenExpiredError) {
+    if (error instanceof jwt.TokenExpiredError) {
       return ApiResponse.error(res, 'Token expired', 401, error);
     }
-    if (error instanceof JsonWebTokenError) {
+    if (error instanceof jwt.JsonWebTokenError) {
       return ApiResponse.error(res, 'Invalid token', 401, error);
     }
     return ApiResponse.error(res, 'Unauthorized', 401, error);

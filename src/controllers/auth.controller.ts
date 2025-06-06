@@ -6,6 +6,9 @@ import jwt from 'jsonwebtoken';
 import { env } from '../config/env';
 import { AuthRequest, RegisterInput, LoginInput } from '../types';
 
+// TODO: Change with Redis or DB in production
+// const blacklistedTokens = new Set();
+
 const registerUser = async (
   req: AuthRequest, // Use AuthRequest for consistency
   res: Response,
@@ -51,6 +54,7 @@ const loginUser = async (
   res: Response,
   next: NextFunction,
 ) => {
+  // TODO: Check if already logged in
   const { email, password } = req.body as LoginInput;
   if (!email || !password) {
     return ApiResponse.error(res, 'Missing required fields', 400);
@@ -87,5 +91,15 @@ const loginUser = async (
     next(error);
   }
 };
+
+// const logoutUser = (req: AuthRequest, res: Response, next: NextFunction) => {
+//   try {
+//     const token = req.headers.authorization?.split(' ')[1];
+//     blacklistedTokens.add(token);
+//     res.status(200).json({ message: 'Logged out' });
+//   } catch (error) {
+//     next(error);
+//   }
+// };
 
 export { registerUser, loginUser };
