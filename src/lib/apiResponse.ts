@@ -27,11 +27,11 @@ export class ApiResponse {
   }
 
   // Optional shortcut for error
-  static error(
+  static error<T>(
     res: Response,
-    message: string,
     statusCode = 400,
-    errorData?: any,
+    message: string,
+    errorData?: T,
   ) {
     console.error(`[RESPONSE]: Error - ${statusCode} - ${message}`);
     this.send(res, statusCode, false, message, errorData);

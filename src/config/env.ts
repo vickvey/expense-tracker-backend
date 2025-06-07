@@ -9,7 +9,7 @@ const { PORT, NODE_ENV, DB_URI, JWT_SECRET, JWT_EXPIRES_IN } = process.env;
 
 // Validate environment variables
 if (!PORT || !NODE_ENV || !DB_URI || !JWT_SECRET || !JWT_EXPIRES_IN) {
-  throw new CustomError('Environment variables not set', 400);
+  throw new CustomError(400, 'Environment variables not set');
 }
 
 // Assert types as string

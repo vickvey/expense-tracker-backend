@@ -16,7 +16,7 @@ const registerUser = async (
 ) => {
   const { name, email, password } = req.body as RegisterInput;
   if (!name || !email || !password) {
-    return ApiResponse.error(res, 'Missing required fields', 400);
+    return ApiResponse.error(res, 400, 'Missing required fields');
   }
 
   try {
@@ -24,8 +24,8 @@ const registerUser = async (
     if (existingUser) {
       return ApiResponse.error(
         res,
-        `User with email ${existingUser.email} already exists`,
         409,
+        `User with email ${existingUser.email} already exists`,
       );
     }
 
@@ -57,14 +57,14 @@ const loginUser = async (
   // TODO: Check if already logged in
   const { email, password } = req.body as LoginInput;
   if (!email || !password) {
-    return ApiResponse.error(res, 'Missing required fields', 400);
+    return ApiResponse.error(res, 400, 'Missing required fields');
   }
 
   try {
     // Find user
     const existingUser = await User.findOne({ email });
     if (!existingUser) {
-      return ApiResponse.error(res, `User with email: ${email} not found`, 404);
+      return ApiResponse.error(res, 404, `User with email: ${email} not found`);
     }
 
     // Verify password
@@ -73,7 +73,7 @@ const loginUser = async (
       password,
     );
     if (!isPasswordMatch) {
-      return ApiResponse.error(res, 'Invalid credentials', 401);
+      return ApiResponse.error(res, 401, 'Invalid credentials');
     }
 
     // Create JWT token

@@ -15,12 +15,12 @@ const validate =
     } catch (e) {
       if (e instanceof ZodError) {
         console.error(`[VALIDATION-ERROR]: `, e.errors);
-        return ApiResponse.error(res, 'Validation Error', 400, e.issues);
+        return ApiResponse.error(res, 400, 'Validation Error', e.issues);
       }
       return ApiResponse.error(
         res,
-        '[VALIDATE MIDDLEWARE INTERNAL ERROR]',
         400,
+        '[VALIDATE MIDDLEWARE INTERNAL ERROR]',
         e,
       );
     }

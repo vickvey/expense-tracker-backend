@@ -13,8 +13,8 @@ export const createTransactionSchema = z.object({
     currency: z.enum(['INR', 'USD', 'EUR'], {
       message: 'Currency is required',
     }),
-    date: z.string().datetime('Invalid date format').or(z.date()),
-    category_id: z.string().min(1, 'Category ID is required'),
+    date: z.string().datetime('Invalid date format').or(z.date()).optional(),
+    category: z.string().min(1, 'Category ID is required'),
   }),
 });
 
@@ -37,6 +37,6 @@ export const updateTransactionSchema = z.object({
       })
       .optional(),
     date: z.string().datetime('Invalid date format').or(z.date()).optional(),
-    category_id: z.string().min(1, 'Category ID is required').optional(),
+    category: z.string().min(1, 'Category ID is required').optional(),
   }),
 });

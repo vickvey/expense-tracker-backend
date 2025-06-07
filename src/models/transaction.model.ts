@@ -7,7 +7,7 @@ const transactionSchema = new mongoose.Schema(
       required: [true, 'Transaction Amount is required'],
       validate: {
         validator: (val: number) => val >= 0,
-        message: 'Amount must greater than integer',
+        message: 'Amount must be a non-negative number',
       },
     },
     type: {
@@ -18,7 +18,7 @@ const transactionSchema = new mongoose.Schema(
     description: {
       type: String,
       trim: true,
-      maxLength: 255,
+      maxlength: 255,
     },
     currency: {
       type: String,
@@ -28,11 +28,13 @@ const transactionSchema = new mongoose.Schema(
     date: {
       type: Date,
       required: [true, 'Transaction Date is required'],
+      default: new Date(),
     },
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
       required: [true, 'Transaction should be related to a User'],
+      index: true,
     },
     category: {
       type: mongoose.Schema.Types.ObjectId,

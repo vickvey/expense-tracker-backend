@@ -35,7 +35,7 @@ const getCategoryByUser = async (
     });
     if (!category) {
       console.log(`[INFO]: Category with _id: ${req.params?.id} not found`);
-      return ApiResponse.error(res, 'Category not found', 404);
+      return ApiResponse.error(res, 404, 'Category not found');
     }
 
     console.log(
@@ -63,8 +63,8 @@ const createCategoryByUser = async (
     if (existingCategory) {
       return ApiResponse.error(
         res,
-        'Category already exists',
         409,
+        'Category already exists',
         existingCategory,
       );
     }
@@ -95,7 +95,7 @@ const updateCategoryByUser = async (
     });
 
     if (!existingCategory)
-      return ApiResponse.error(res, 'Category not found', 404);
+      return ApiResponse.error(res, 404, 'Category not found');
 
     const updateExistingCategory = await Category.findOneAndUpdate(
       {

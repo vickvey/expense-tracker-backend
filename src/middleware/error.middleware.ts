@@ -8,18 +8,18 @@ const errorMiddleware = (err: any, req: Request, res: Response) => {
   [ERROR]: ${err.statusCode || 500} - ${err.message} - ${req.method} - ${req.originalUrl}`);
 
   if (err.name === 'CastError') {
-    return ApiResponse.error(res, 'Resource not found', 404);
+    return ApiResponse.error(res, 404, 'Resource not found');
   }
 
   if (err.code === 11000) {
-    return ApiResponse.error(res, 'Duplicate field value entered', 400);
+    return ApiResponse.error(res, 400, 'Duplicate field value entered');
   }
 
   if (err.name === 'ValidationError') {
     const message = Object.values(err.errors)
       .map((val: any) => val.message)
       .join(', ');
-    return ApiResponse.error(res, message, 400);
+    return ApiResponse.error(res, 400, message);
   }
 
   // Default error response
@@ -30,7 +30,7 @@ const errorMiddleware = (err: any, req: Request, res: Response) => {
   const isDev = env.NODE_ENV === 'development';
   const errorData = isDev ? { stack: err.stack } : undefined;
 
-  return ApiResponse.error(res, message, statusCode, errorData);
+  return ApiResponse.error(res, statusCode, message, errorData);
 };
 
 export default errorMiddleware;

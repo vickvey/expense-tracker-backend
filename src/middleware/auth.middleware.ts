@@ -16,15 +16,15 @@ const authorize = async (
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
       return ApiResponse.error(
         res,
-        'No token provided, Please provide auth token',
         401,
+        'No token provided, Please provide auth token',
       );
     }
 
     // Extract token
     const token = authHeader.split(' ')[1];
     if (!token) {
-      return ApiResponse.error(res, 'Invalid token format', 401);
+      return ApiResponse.error(res, 401, 'Invalid token format');
     }
 
     const decoded = jwt.verify(token, env.JWT_SECRET) as JwtPayload;
@@ -32,7 +32,7 @@ const authorize = async (
     // Find user
     const user = await User.findById(decoded.userId);
     if (!user) {
-      return ApiResponse.error(res, 'User not found', 401);
+      return ApiResponse.error(res, 401, 'User not found');
     }
 
     // TODO: (Optional) Add additional user validation (e.g., check if user is active)
@@ -45,12 +45,12 @@ const authorize = async (
     next();
   } catch (error) {
     if (error instanceof jwt.TokenExpiredError) {
-      return ApiResponse.error(res, 'Token expired', 401, error);
+      return ApiResponse.error(res, 401, 'Token expired', error);
     }
     if (error instanceof jwt.JsonWebTokenError) {
-      return ApiResponse.error(res, 'Invalid token', 401, error);
+      return ApiResponse.error(res, 401, 'Invalid token', error);
     }
-    return ApiResponse.error(res, 'Unauthorized', 401, error);
+    return ApiResponse.error(res, 401, 'Unauthorized', error);
   }
 };
 
