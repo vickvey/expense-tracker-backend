@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-const createCategorySchema = z.object({
+export const createCategorySchema = z.object({
   body: z.object({
     name: z.string().nonempty('Category Name is required'),
     description: z.string().optional(),

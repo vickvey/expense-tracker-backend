@@ -1,13 +1,13 @@
 import express, { Request, Response } from 'express';
 import { ApiResponse } from './lib/apiResponse';
 import loggerMiddleware from './middleware/logger.middleware';
+import authorize from './middleware/auth.middleware';
 import errorMiddleware from './middleware/error.middleware';
 import authRouter from './routes/auth.routes';
-import authorize from './middleware/auth.middleware';
-// import { setupSwagger } from './swagger';
-// import userRouter from './routes/user.routes';
-// import categoryRouter from './routes/category.routes';
-// import transactionRouter from './routes/transaction.routes';
+import userRouter from './routes/user.routes';
+import categoryRouter from './routes/category.routes';
+import transactionRouter from './routes/transaction.routes';
+import { setupSwagger } from './swagger';
 
 const app = express();
 app.use(express.json());
@@ -21,7 +21,8 @@ app.get('/', (req: Request, res: Response) => {
 app.use('/api/v1/auth', authRouter);
 
 // app.use('/api/v1/user', authorize, userRouter);
-// app.use('/api/v1/category', authorize, categoryRouter);
+
+app.use('/api/v1/category', authorize, categoryRouter);
 // app.use('/api/v1/transaction', authorize, transactionRouter);
 
 // Swagger setup for OpenAPI documentation

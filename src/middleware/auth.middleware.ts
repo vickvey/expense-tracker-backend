@@ -14,7 +14,11 @@ const authorize = async (
     // Check for authorization header
     const authHeader = req.headers.authorization;
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
-      return ApiResponse.error(res, 'No token provided', 401);
+      return ApiResponse.error(
+        res,
+        'No token provided, Please provide auth token',
+        401,
+      );
     }
 
     // Extract token
