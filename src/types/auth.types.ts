@@ -6,7 +6,7 @@ export interface JwtPayload {
 }
 
 export interface AuthRequest extends Request {
-  user?: { id: string };
+  user?: { id: string; role: 'standard' | 'admin' };
 }
 
 // Define input types for type safety

@@ -41,7 +41,7 @@ const authorize = async (
     // }
 
     // Attach user to request
-    req.user = { id: user.id };
+    req.user = { id: user._id, role: user.role };
     next();
   } catch (error) {
     if (error instanceof jwt.TokenExpiredError) {
@@ -54,4 +54,11 @@ const authorize = async (
   }
 };
 
-export default authorize;
+function isAdmin(req: AuthRequest, res: Response, next: NextFunction) {
+  if (req.user?.role !== 'admin') {
+    return ApiResponse.error(res, 403, 'Forbidden: Admins only');
+  }
+  next();
+}
+
+export { authorize, isAdmin };

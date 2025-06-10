@@ -1,6 +1,16 @@
 import mongoose from 'mongoose';
 
-const userSchema = new mongoose.Schema(
+interface IUser extends Document {
+  _id: string;
+  name: string;
+  email: string;
+  password: string;
+  role: 'standard' | 'admin';
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+const userSchema = new mongoose.Schema<IUser>(
   {
     name: {
       type: String,
@@ -21,7 +31,7 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: [true, 'Password is required'],
     },
-    userType: {
+    role: {
       type: String,
       enum: ['standard', 'admin'],
       default: 'standard',
@@ -30,4 +40,4 @@ const userSchema = new mongoose.Schema(
   { timestamps: true },
 );
 
-export const User = mongoose.model('User', userSchema);
+export const User = mongoose.model<IUser>('User', userSchema);

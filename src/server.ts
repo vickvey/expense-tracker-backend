@@ -1,10 +1,11 @@
 import express, { Request, Response } from 'express';
 import { ApiResponse } from './lib/apiResponse';
 import loggerMiddleware from './middleware/logger.middleware';
-import authorize from './middleware/auth.middleware';
+import { isAdmin, authorize } from './middleware/auth.middleware';
 import errorMiddleware from './middleware/error.middleware';
 import authRouter from './routes/auth.routes';
 import categoryRouter from './routes/category.routes';
+import adminRouter from './routes/admin.routes';
 import transactionRouter from './routes/transaction.routes';
 import { setupSwagger } from './swagger';
 
@@ -22,8 +23,9 @@ app.get('/', (req: Request, res: Response) => {
 
 app.use('/api/v1/auth', authRouter);
 
-// app.use('/api/v1/user', authorize, userRouter); // TODO: Gonna be admin router
+// app.use('/api/v1/user', authorize, userRouter); // TODO: Update it later
 
+app.use('/api/v1/admin', authorize, isAdmin, adminRouter); // TODO: Complete this
 app.use('/api/v1/category', authorize, categoryRouter);
 app.use('/api/v1/transaction', authorize, transactionRouter);
 
