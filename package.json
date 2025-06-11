@@ -5,7 +5,14 @@
   "private": true,
   "main": "dist/index.js",
   "type": "module",
-  "keywords": ["express", "typescript", "drizzle", "zod", "postgres", "rest", "api"],
+  "keywords": [
+    "express",
+    "typescript",
+    "zod",
+    "postgres",
+    "rest",
+    "api"
+  ],
   "author": "Vivek Kumar",
   "license": "MIT",
   "scripts": {
@@ -15,6 +22,7 @@
   "dependencies": {
     "argon2": "^0.43.0",
     "dotenv": "^16.5.0",
+    "dotenv-expand": "^12.0.2",
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.15.1"

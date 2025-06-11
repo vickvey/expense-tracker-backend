@@ -1,0 +1,16 @@
+services:
+  mongodb:
+    image: mongo:7
+    container_name: personal-finance-mongo
+    ports:
+      - "27017:27017"  # expose default MongoDB port
+    environment:
+      MONGO_INITDB_DATABASE: personal-finance
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: rootpassword
+    volumes:
+      - ./mongo-data:/data/db
+    restart: unless-stopped
+
+volumes:
+  mongo-data:

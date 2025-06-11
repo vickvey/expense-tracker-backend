@@ -1,4 +1,4 @@
-# Expense Tracker Backend
+# Personal Finance Tracker REST API
 
 A TypeScript-based REST API for tracking expenses, built with Express, Mongoose, and Zod for server-side validation.
 
@@ -11,8 +11,11 @@ A TypeScript-based REST API for tracking expenses, built with Express, Mongoose,
 
 ## Setup
 1. Clone the repository: `git clone https://github.com/vickvey/expense-tracker-backend.git`
-2. Install dependencies: `npm install`
-3. Set up `.env` with MongoDB URI
+2. Install dependencies: `pnpm install`
+3. Copy the example env file:   
+```bash
+cp .env.example .env.development.local  
+```
 4. Run: `npm start`
 
 ## API Routers
