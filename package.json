@@ -1,9 +1,13 @@
 {
-  "name": "expense-tracker-backend",
+  "name": "personal-finance-api",
   "version": "1.0.0",
-  "description": "An expense tracker rest api",
+  "description": "A Personal Finance Tracker REST API",
+  "private": true,
   "main": "dist/index.js",
   "type": "module",
+  "keywords": ["express", "typescript", "drizzle", "zod", "postgres", "rest", "api"],
+  "author": "Vivek Kumar",
+  "license": "MIT",
   "scripts": {
     "build": "tsc",
     "dev": "tsx watch ./src/index.ts"
@@ -13,17 +17,15 @@
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.15.1",
-    "zod": "^3.25.42"
+    "mongoose": "^8.15.1"
   },
   "devDependencies": {
-    "@types/dotenv": "^6.1.1",
     "@types/express": "^5.0.2",
     "@types/jsonwebtoken": "^9.0.9",
     "@types/node": "^22.15.29",
-    "prettier": "^3.5.3",
     "tsx": "^4.19.4",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "zod": "^3.25.42"
   },
-  "private": true
+  "packageManager": "pnpm@10.12.1"
 }
