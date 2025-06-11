@@ -1,6 +1,17 @@
-import mongoose from 'mongoose';
+import mongoose, { Document } from 'mongoose';
 
-const transactionSchema = new mongoose.Schema(
+interface ITransaction extends Document {
+  _id: string
+  amount: number
+  type: 'Income' | 'Expense'
+  description: string
+  currency: 'INR' | 'USD' | 'EUR'
+  date: Date
+  userId: mongoose.Schema.Types.ObjectId
+  categoryId: mongoose.Schema.Types.ObjectId
+}
+
+const transactionSchema = new mongoose.Schema<ITransaction>(
   {
     amount: {
       type: Number,
@@ -19,6 +30,7 @@ const transactionSchema = new mongoose.Schema(
       type: String,
       trim: true,
       maxlength: 255,
+      
     },
     currency: {
       type: String,
@@ -30,13 +42,13 @@ const transactionSchema = new mongoose.Schema(
       required: [true, 'Transaction Date is required'],
       default: new Date(),
     },
-    user: {
+    userId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
       required: [true, 'Transaction should be related to a User'],
       index: true,
     },
-    category: {
+    categoryId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Category',
       required: [true, 'Transaction Category is required'],
@@ -47,4 +59,6 @@ const transactionSchema = new mongoose.Schema(
   },
 );
 
-export const Transaction = mongoose.model('Transaction', transactionSchema);
+const Transaction = mongoose.model<ITransaction>('Transaction', transactionSchema);
+
+export {ITransaction, Transaction};

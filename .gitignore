@@ -1,3 +1,6 @@
+# docker mongodb
+mongo-data
+
 /tmp
 /out-tsc
 

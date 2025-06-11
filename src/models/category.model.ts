@@ -1,4 +1,12 @@
-import mongoose from 'mongoose';
+import mongoose, { Document } from 'mongoose';
+
+interface ICategory extends Document {
+  _id: string
+  name: string
+  description?: string
+  color?: 'violet' | 'indigo' | 'blue' | 'green' | 'yellow' | 'orange' | 'red'
+  userId: mongoose.Schema.Types.ObjectId
+}
 
 const categorySchema = new mongoose.Schema(
   {
@@ -17,7 +25,7 @@ const categorySchema = new mongoose.Schema(
       type: String,
       enum: ['violet', 'indigo', 'blue', 'green', 'yellow', 'orange', 'red'],
     },
-    user: {
+    userId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
       required: true,
@@ -27,4 +35,6 @@ const categorySchema = new mongoose.Schema(
   { timestamps: true },
 );
 
-export const Category = mongoose.model('Category', categorySchema);
+const Category = mongoose.model('Category', categorySchema);
+
+export {ICategory, Category};
