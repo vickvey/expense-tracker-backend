@@ -13,9 +13,9 @@ A TypeScript-based REST API for tracking expenses, built with Express, Mongoose,
 1. Clone the repository: `git clone https://github.com/vickvey/expense-tracker-backend.git`
 2. Install dependencies: `pnpm install`
 3. Copy the example env file:   
-```bash
-cp .env.example .env.development.local  
-```
+    ```bash
+    cp .env.example .env.development.local  
+    ```
 4. Run: `npm start`
 
 ## API Routers

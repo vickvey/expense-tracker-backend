@@ -1,3 +1,5 @@
+// TODO: Complete this
+// NOTE: These routes are for user to edit his user data (or profile data which will be added soon)
 import { Router } from 'express';
 
 const router = Router();

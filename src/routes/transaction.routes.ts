@@ -5,12 +5,12 @@ import {
   getAllTransactionsByUser,
   getTransactionByUser,
   updateTransactionByUser,
-} from '../controllers/transaction.controller';
+} from '@/controllers/transaction.controller';
 import {
   createTransactionSchema,
   updateTransactionSchema,
-} from '../schemas/transaction.schema';
-import validate from '../middleware/validate';
+} from '@/schemas/transaction.schema';
+import validate from '@/middleware/validate';
 
 const router = Router();
 

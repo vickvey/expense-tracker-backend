@@ -5,12 +5,12 @@ import {
   getAllCategoriesByUser,
   getCategoryByUser,
   updateCategoryByUser,
-} from '../controllers/category.controller';
-import validate from '../middleware/validate';
+} from '@/controllers/category.controller';
+import validate from '@/middleware/validate';
 import {
   createCategorySchema,
   updateCategorySchema,
-} from '../schemas/category.schema';
+} from '@/schemas/category.schema';
 
 const router = Router();
 

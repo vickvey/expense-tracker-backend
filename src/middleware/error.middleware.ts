@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
-import { ApiResponse } from '../lib/apiResponse';
-import { CustomError } from '../lib/customError';
-import { env } from '../config/env';
+import { ApiResponse } from '@/lib/apiResponse';
+import { CustomError } from '@/lib/customError';
+import { env } from '@/config/env';
 
 const errorMiddleware = (err: any, req: Request, res: Response) => {
   console.error(`
