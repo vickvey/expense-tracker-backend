@@ -14,7 +14,7 @@ A TypeScript-based REST API for tracking expenses, built with Express, Mongoose,
 2. Install dependencies: `pnpm install`
 3. Copy the example env file:   
     ```bash
-    cp .env.example .env.development.local  
+    cp .env.example .env  
     ```
 4. Run: `npm start`
 

@@ -5,7 +5,8 @@ import { z, ZodError } from "zod";
 // Load env file based on current NODE_ENV
 expand(
   config({
-    path: `.env.${process.env.NODE_ENV || "development"}.local`,
+    // path: `.env.${process.env.NODE_ENV || "development"}.local`,
+    path: '.env'
   })
 );
 
@@ -17,18 +18,18 @@ const stringBoolean = z
 
 // Define and validate your full schema
 const EnvSchema = z.object({
+  // Environment
   NODE_ENV: z.enum(["development", "production", "test"]).default("development"),
-  PORT: z.coerce.number().default(3000),
-  // DB_HOST: z.string(),
-  // DB_USER: z.string(),
-  // DB_PASSWORD: z.string(),
-  // DB_NAME: z.string(),
-  // DB_PORT: z.coerce.number().default(5432),
+  PORT: z.coerce.number().default(5500),
+
+  // Database
+  DB_USER: z.string(),
+  DB_PASSWORD: z.string(),
+  DB_NAME: z.string(),
+  DB_PORT: z.coerce.number().default(5432),
   DB_URI: z.string().url(),
 
-  // DB_MIGRATING: stringBoolean,
-  // DB_SEEDING: stringBoolean,
-
+  // JWT
   JWT_SECRET: z.string(),
   JWT_EXPIRES_IN: z.string().or(z.coerce.number()),
 });
