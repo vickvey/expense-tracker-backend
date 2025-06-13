@@ -1,6 +1,6 @@
 import { AuthRequest } from '@/types';
 import { Response, NextFunction } from 'express';
-import { Transaction } from '@/models/transaction.model';
+import Transaction from '@/models/transaction.model';
 import { ApiResponse } from '@/lib/apiResponse';
 
 const getAllTransactionsByUser = async (

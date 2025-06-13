@@ -1,9 +1,10 @@
+import {env} from "@/config/env";
 import app from './server';
 import connectToDatabase from './database/mongodb';
 
-app.listen(5500, async () => {
+app.listen(env.PORT, async () => {
   console.log(
-    `INFO: Expense Tracker Server started at http://localhost:5500 ...`,
+    `INFO: Personal Finance API Server started at http://localhost:${env.PORT} ...`,
   );
 
   await connectToDatabase();

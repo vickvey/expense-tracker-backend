@@ -1,6 +1,6 @@
 import mongoose, { Document } from 'mongoose';
 
-interface ITransaction extends Document {
+export interface ITransaction extends Document {
   _id: string
   amount: number
   type: 'Income' | 'Expense'
@@ -17,7 +17,9 @@ const transactionSchema = new mongoose.Schema<ITransaction>(
       type: Number,
       required: [true, 'Transaction Amount is required'],
       validate: {
-        validator: (val: number) => val >= 0,
+        validator: function (val: number): boolean {
+            return val >= 0;
+        },
         message: 'Amount must be a non-negative number',
       },
     },
@@ -61,4 +63,4 @@ const transactionSchema = new mongoose.Schema<ITransaction>(
 
 const Transaction = mongoose.model<ITransaction>('Transaction', transactionSchema);
 
-export {ITransaction, Transaction};
+export default Transaction;

@@ -1,6 +1,6 @@
 import mongoose, { Document } from 'mongoose';
 
-interface ICategory extends Document {
+export interface ICategory extends Document {
   _id: string
   name: string
   description?: string
@@ -37,4 +37,4 @@ const categorySchema = new mongoose.Schema(
 
 const Category = mongoose.model('Category', categorySchema);
 
-export {ICategory, Category};
+export default Category;

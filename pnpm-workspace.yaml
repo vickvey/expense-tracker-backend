@@ -2,3 +2,5 @@ onlyBuiltDependencies:
   - '@scarf/scarf'
   - argon2
   - esbuild
+  - mongodb-memory-server
+  - unrs-resolver

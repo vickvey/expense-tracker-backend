@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 import { Response, NextFunction } from 'express';
-import { User } from '@/models/user.model';
+import User from '@/models/user.model';
 import { ApiResponse } from '@/lib/apiResponse';
 import { env } from '@/config/env';
 import { JwtPayload, AuthRequest } from '@/types';

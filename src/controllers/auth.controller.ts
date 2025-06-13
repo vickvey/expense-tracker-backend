@@ -1,6 +1,6 @@
 import { NextFunction, Response } from 'express';
 import argon2 from 'argon2';
-import { User } from '@/models/user.model';
+import User from '@/models/user.model';
 import { ApiResponse } from '@/lib/apiResponse';
 import jwt from 'jsonwebtoken';
 import { env } from '@/config/env';
@@ -39,11 +39,7 @@ const registerUser = async (
     // TODO: Implement logger.middleware.ts
     console.log(`[CREATE]: User created successfully - ${createdUser._id}`);
 
-    return ApiResponse.success(res, 201, 'User registered successfully!', {
-      id: createdUser._id.toString(),
-      name: createdUser.name,
-      email: createdUser.email,
-    });
+    return ApiResponse.success(res, 201, 'User registered successfully!', createdUser);
   } catch (error) {
     next(error);
   }

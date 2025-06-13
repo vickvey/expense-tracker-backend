@@ -14,7 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(loggerMiddleware);
 
 app.get('/', (req: Request, res: Response) => {
-  return ApiResponse.success(res, 200, 'Expense Tracker API is live !!', {
+  return ApiResponse.success(res, 200, 'Personal Finance API is live !!', {
     method: req.method,
     headers: req.headers,
   });

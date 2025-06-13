@@ -1,7 +1,7 @@
 import { Response, NextFunction } from 'express';
 import { AuthRequest } from '@/types';
 import { ApiResponse } from '@/lib/apiResponse';
-import { Category } from '@/models/category.model';
+import Category from '@/models/category.model';
 
 const getAllCategoriesByUser = async (
   req: AuthRequest,

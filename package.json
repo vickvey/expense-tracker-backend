@@ -17,7 +17,8 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc",
-    "dev": "tsx watch ./src/index.ts"
+    "dev": "tsx watch ./src/index.ts",
+    "db:seed": "tsx ./src/seed/index.ts"
   },
   "dependencies": {
     "argon2": "^0.43.0",
@@ -31,6 +32,7 @@
     "@types/express": "^5.0.2",
     "@types/jsonwebtoken": "^9.0.9",
     "@types/node": "^22.15.29",
+    "@types/supertest": "^6.0.3",
     "tsx": "^4.19.4",
     "typescript": "^5.8.3",
     "zod": "^3.25.42"
