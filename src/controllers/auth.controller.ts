@@ -5,6 +5,7 @@ import { ApiResponse } from '@/lib/apiResponse';
 import jwt from 'jsonwebtoken';
 import { env } from '@/config/env';
 import { AuthRequest, RegisterInput, LoginInput } from '@/types';
+import { logger } from '@/logger';
 
 // TODO: Change with Redis or DB in production
 // const blacklistedTokens = new Set();
@@ -35,10 +36,8 @@ const registerUser = async (
       email,
       password: hashPassword,
     });
-
-    // TODO: Implement logger.middleware.ts
-    console.log(`[CREATE]: User created successfully - ${createdUser._id}`);
-
+    
+    logger.info(`User created successfully`, createdUser._id);
     return ApiResponse.success(res, 201, 'User registered successfully!', createdUser);
   } catch (error) {
     next(error);

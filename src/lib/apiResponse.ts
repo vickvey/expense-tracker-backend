@@ -1,3 +1,4 @@
+import { logger } from '@/logger';
 import { Response } from 'express';
 
 export class ApiResponse {
@@ -22,7 +23,7 @@ export class ApiResponse {
     message: string,
     data?: T,
   ) {
-    console.log(`[RESPONSE]: Success - ${statusCode} - ${message}`);
+    logger.info(`Success - ${statusCode} - ${message}`)
     this.send(res, statusCode, true, message, data);
   }
 
@@ -33,7 +34,7 @@ export class ApiResponse {
     message: string,
     errorData?: T,
   ) {
-    console.error(`[RESPONSE]: Error - ${statusCode} - ${message}`);
+    logger.error(`Response Error - ${statusCode} - ${message}`, statusCode, message);
     this.send(res, statusCode, false, message, errorData);
   }
 }

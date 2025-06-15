@@ -29,6 +29,9 @@ const EnvSchema = z.object({
   DB_PORT: z.coerce.number().default(5432),
   DB_URI: z.string().url(),
 
+  // Logger
+  LOG_LEVEL: z.enum(['info', 'debug', 'warn', 'error']).default('info'),
+
   // JWT
   JWT_SECRET: z.string(),
   JWT_EXPIRES_IN: z.string().or(z.coerce.number()),

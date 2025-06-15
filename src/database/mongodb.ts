@@ -1,12 +1,13 @@
 import mongoose from 'mongoose';
 import { env } from '@/config/env';
+import { logger } from '@/logger';
 
 const connectToDatabase = async () => {
   try {
     await mongoose.connect(env.DB_URI);
-    console.log(`INFO: Database connected in ${env.NODE_ENV} mode`);
+    logger.info(`Database connected in **${env.NODE_ENV}** mode`)
   } catch (e) {
-    console.error(`ERROR: Error connecting database: ${e}`);
+    logger.error(`Error connecting database: ${e}`)
     await mongoose.disconnect();
     process.exit(1);
   }
