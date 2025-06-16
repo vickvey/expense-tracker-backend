@@ -1,11 +1,17 @@
-// TODO: Complete this
-// NOTE: These routes are for user to edit his user data (or profile data which will be added soon)
+// src/routes/user.routes.ts
 import { Router } from 'express';
+// import {
+//   getUserProfile,
+//   updateUserProfile,
+//   changePassword,
+// } from '@/controllers/user.controller';
 
 const router = Router();
 
-// router.get('/', getAllUsers);
-// router.put('/:id', updateUser);
-// router.delete('/:id', deleteUser);
+// Self-service for authenticated users
+// TODO: Complete all this
+router.get('/me', getUserProfile); // GET /api/v1/user/me
+router.put('/me', updateUserProfile); // PUT /api/v1/user/me
+router.post('/change-password', changePassword); // POST /api/v1/user/change-password
 
-export default router; // userRouter
+export default router;
