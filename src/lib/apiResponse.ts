@@ -1,4 +1,4 @@
-import { logger } from '@/logger';
+import { logger } from '@/utils/logger';
 import { Response } from 'express';
 
 export class ApiResponse {

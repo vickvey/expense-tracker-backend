@@ -5,7 +5,7 @@ import { ApiResponse } from '@/lib/apiResponse';
 import jwt from 'jsonwebtoken';
 import { env } from '@/config/env';
 import { AuthRequest, RegisterInput, LoginInput } from '@/types';
-import { logger } from '@/logger';
+import { logger } from '@/utils/logger';
 
 // TODO: Change with Redis or DB in production
 // const blacklistedTokens = new Set();
