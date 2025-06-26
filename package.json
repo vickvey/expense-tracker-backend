@@ -3,40 +3,41 @@
   "version": "1.0.0",
   "description": "A Personal Finance Tracker REST API",
   "private": true,
-  "main": "dist/index.js",
+  "main": "./dist/index.js",
   "type": "module",
   "keywords": [
+    "rest",
     "express",
     "typescript",
-    "zod",
-    "postgres",
-    "rest",
-    "api"
+    "mongoose"
   ],
   "author": "Vivek Kumar",
   "license": "MIT",
   "scripts": {
-    "build": "tsc",
+    "clean": "rm -rf dist",
+    "build": "npm run clean && tsc",
+    "start": "node ./dist/index.js",
     "dev": "tsx watch ./src/index.ts",
-    "db:seed": "tsx ./src/seed/index.ts"
+    "db:seed": "tsx ./src/seed/index.ts",
+    "prod": "npm run build && npm start"
   },
   "dependencies": {
     "argon2": "^0.43.0",
+    "cors": "^2.8.5",
     "dotenv": "^16.5.0",
     "dotenv-expand": "^12.0.2",
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.15.1",
-    "winston": "^3.17.0"
+    "winston": "^3.17.0",
+    "zod": "^3.25.67"
   },
+  "packageManager": "pnpm@10.12.3",
   "devDependencies": {
     "@types/express": "^5.0.2",
     "@types/jsonwebtoken": "^9.0.9",
     "@types/node": "^22.15.29",
-    "@types/supertest": "^6.0.3",
     "tsx": "^4.19.4",
-    "typescript": "^5.8.3",
-    "zod": "^3.25.42"
-  },
-  "packageManager": "pnpm@10.12.1"
+    "typescript": "^5.8.3"
+  }
 }
