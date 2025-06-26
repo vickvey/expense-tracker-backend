@@ -1,13 +1,12 @@
 services:
   mongo:
     image: mongo:7.0
+    restart: unless-stopped
     environment:
-      - MONGO_INITDB_DATABASE=${DB_NAME}
-      - MONGO_INITDB_ROOT_USERNAME=${DB_USER}
-      - MONGO_INITDB_ROOT_PASSWORD=${DB_PASSWORD}
+      MONGO_INITDB_DATABASE: personal-finance-db
+      MONGO_INITDB_ROOT_USERNAME: myuser
+      MONGO_INITDB_ROOT_PASSWORD: mysecret
     ports:
-      - ${DB_PORT}:27017
+      - '27017:27017'
     volumes:
       - ./mongo-data:/data/db
-    env_file:
-      - .env

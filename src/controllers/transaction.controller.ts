@@ -1,7 +1,7 @@
 import { AuthRequest } from '@/types';
 import { Response, NextFunction } from 'express';
 import Transaction from '@/models/transaction.model';
-import { ApiResponse } from '@/lib/apiResponse';
+import { ApiResponse } from '@/utils/apiResponse';
 
 const getAllTransactionsByUser = async (
   req: AuthRequest,
@@ -39,7 +39,9 @@ const getTransactionByUser = async (
     }
 
     console.log(
-      `INFO: Fetched transaction data for User: ${req.user?.id} - ${JSON.stringify(existingTransaction)}`,
+      `INFO: Fetched transaction data for User: ${
+        req.user?.id
+      } - ${JSON.stringify(existingTransaction)}`,
     );
     return ApiResponse.success(
       res,

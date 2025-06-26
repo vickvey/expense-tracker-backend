@@ -1,4 +1,4 @@
-import { logger } from '@/utils/logger';
+import logger from '@/utils/logger';
 import { Response } from 'express';
 
 export class ApiResponse {
@@ -23,7 +23,7 @@ export class ApiResponse {
     message: string,
     data?: T,
   ) {
-    logger.info(`Success - ${statusCode} - ${message}`)
+    logger.info(`Success - ${statusCode} - ${message}`);
     this.send(res, statusCode, true, message, data);
   }
 
@@ -34,7 +34,11 @@ export class ApiResponse {
     message: string,
     errorData?: T,
   ) {
-    logger.error(`Response Error - ${statusCode} - ${message}`, statusCode, message);
+    logger.error(
+      `Response Error - ${statusCode} - ${message}`,
+      statusCode,
+      message,
+    );
     this.send(res, statusCode, false, message, errorData);
   }
 }

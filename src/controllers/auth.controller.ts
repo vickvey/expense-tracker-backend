@@ -1,7 +1,7 @@
 import { NextFunction, Response } from 'express';
 import argon2 from 'argon2';
 import User from '@/models/user.model';
-import { ApiResponse } from '@/lib/apiResponse';
+import { ApiResponse } from '@/utils/apiResponse';
 import jwt from 'jsonwebtoken';
 import { env } from '@/config/env';
 import { AuthRequest, RegisterInput, LoginInput } from '@/types';
@@ -36,9 +36,14 @@ const registerUser = async (
       email,
       password: hashPassword,
     });
-    
+
     logger.info(`User created successfully`, createdUser._id);
-    return ApiResponse.success(res, 201, 'User registered successfully!', createdUser);
+    return ApiResponse.success(
+      res,
+      201,
+      'User registered successfully!',
+      createdUser,
+    );
   } catch (error) {
     next(error);
   }

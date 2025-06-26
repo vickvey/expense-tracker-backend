@@ -1,6 +1,6 @@
 import { Response, NextFunction } from 'express';
 import { AuthRequest } from '@/types';
-import { ApiResponse } from '@/lib/apiResponse';
+import { ApiResponse } from '@/utils/apiResponse';
 import Category from '@/models/category.model';
 
 const getAllCategoriesByUser = async (
@@ -39,7 +39,9 @@ const getCategoryByUser = async (
     }
 
     console.log(
-      `[INFO]: Fetched category data for User: ${req.user?.id} - ${JSON.stringify(category)}`,
+      `[INFO]: Fetched category data for User: ${
+        req.user?.id
+      } - ${JSON.stringify(category)}`,
     );
     return ApiResponse.success(res, 200, 'Fetched category for user', category);
   } catch (error) {

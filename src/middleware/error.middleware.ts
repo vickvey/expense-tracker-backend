@@ -1,11 +1,13 @@
 import { Request, Response } from 'express';
-import { ApiResponse } from '@/lib/apiResponse';
-import { CustomError } from '@/lib/customError';
+import { ApiResponse } from '@/utils/apiResponse';
+import { CustomError } from '@/utils/customError';
 import { env } from '@/config/env';
 
 const errorMiddleware = (err: any, req: Request, res: Response) => {
   console.error(`
-  [ERROR]: ${err.statusCode || 500} - ${err.message} - ${req.method} - ${req.originalUrl}`);
+  [ERROR]: ${err.statusCode || 500} - ${err.message} - ${req.method} - ${
+    req.originalUrl
+  }`);
 
   if (err.name === 'CastError') {
     return ApiResponse.error(res, 404, 'Resource not found');
